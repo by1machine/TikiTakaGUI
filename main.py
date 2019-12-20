@@ -17,9 +17,11 @@ while True:
 
 root = Tk()
 var = StringVar()
-var.set(5.0)
+seconds = 5.0
+var.set(seconds)
 
 after = None
+
 
 def countdown(count):
     var.set(float("%.2f" % count))
@@ -28,7 +30,7 @@ def countdown(count):
     after = root.after(100, countdown, count - 0.1)
     if count < 0.1:
         root.after_cancel(after)
-        var.set(5.0)
+        var.set(seconds)
         baslatbutton.configure(state=NORMAL)
     if count > 0.1:
         after
@@ -37,7 +39,7 @@ def countdown(count):
 def bitir():
     baslatbutton.configure(state=NORMAL)
     root.after_cancel(after)
-    var.set(60.0)
+    var.set(seconds)
 
 
 sizex = 800
@@ -59,7 +61,7 @@ sureLabel.grid(row=1, column=0, padx=(320, 0), pady=10, sticky=W)
 sureSayi = Label(root, textvariable=var, font=("Helvetica", 18))
 sureSayi.grid(row=1, column=1, padx=(0, 320), pady=10, sticky=W)
 
-baslatbutton = Button(root, text="Başlat", font=("Helvetica", 18), width=15, command=lambda: countdown(5))
+baslatbutton = Button(root, text="Başlat", font=("Helvetica", 18), width=15, command=lambda: countdown(seconds))
 baslatbutton.grid(row=2, column=0, sticky=S, pady=10)
 
 bitirbutton = Button(root, text="Bitir", font=("Helvetica", 18), width=15, command=bitir)
